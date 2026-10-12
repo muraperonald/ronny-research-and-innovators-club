@@ -61,13 +61,19 @@ confirmation page shows "Saved to: JSON file".
 4. Upload everything **inside** `ronny-research-club/` to `htdocs/` with the File Manager or FTP.
 5. Visit your `*.infinityfreeapp.com` URL and submit a test registration.
 
-### Render (Docker)
-1. Push the folder to a GitHub repository.
-2. On Render: **New → Web Service** → pick the repo. Render detects the `Dockerfile`.
-3. Add environment variables `DB_HOST`, `DB_NAME`, `DB_USER`, `DB_PASS` (and `DB_PORT` if not 3306)
-   for an external MySQL database (e.g. Aiven or Railway free tier).
-   Without them the site still works using the JSON fallback, but Render's disk is
-   wiped on every deploy.
+### Render (Docker) + TiDB Cloud (free MySQL)
+1. **Database:** create a free *Serverless* cluster at tidbcloud.com → **Connect** →
+   copy host, port (4000), user (`xxxx.root`) and generate a password. Database: `test`.
+2. **Code:** push this folder to a GitHub repository (private is fine).
+3. **Render:** New → **Blueprint** → choose the repo. `render.yaml` creates a free
+   Docker web service; paste `DB_HOST`, `DB_USER`, `DB_PASS` when asked.
+   (`DB_PORT=4000`, `DB_NAME=test`, `DB_SSL=true` are preset.)
+4. Open the `*.onrender.com` URL, submit a test registration and check that
+   "Saved to" says **MySQL**.
+
+The free service sleeps after 15 minutes idle (first visit then takes ~30 s).
+If the database is unreachable, the site falls back to JSON files, which Render
+wipes on every deploy.
 
 ## 4. Things to customise
 
