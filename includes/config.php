@@ -23,17 +23,30 @@
  * the /data folder instead, so the forms keep working.
  */
 
-define('DB_HOST', getenv('DB_HOST') ?: 'localhost');
-define('DB_PORT', getenv('DB_PORT') ?: '3306');
-define('DB_NAME', getenv('DB_NAME') ?: 'rric_club');
-define('DB_USER', getenv('DB_USER') ?: 'root');
-define('DB_PASS', getenv('DB_PASS') !== false ? getenv('DB_PASS') : '');
+/**
+ * Read a setting from the environment, ignoring stray whitespace and wrapping
+ * quotes that easily sneak in when values are pasted into a hosting dashboard.
+ */
+function env_setting(string $key, string $default): string
+{
+    $value = getenv($key);
+    if ($value === false) {
+        return $default;
+    }
+    return trim(trim($value), "\"'");
+}
+
+define('DB_HOST', env_setting('DB_HOST', 'localhost'));
+define('DB_PORT', env_setting('DB_PORT', '3306'));
+define('DB_NAME', env_setting('DB_NAME', 'rric_club'));
+define('DB_USER', env_setting('DB_USER', 'root'));
+define('DB_PASS', env_setting('DB_PASS', ''));
 
 // Encrypted connection, required by cloud MySQL hosts such as TiDB Cloud or Aiven.
 //   ''      → no TLS (XAMPP, InfinityFree)
 //   'true'  → TLS using the server's built-in CA bundle (TiDB Cloud)
 //   a path  → TLS using that CA certificate file (e.g. Aiven's ca.pem)
-define('DB_SSL', getenv('DB_SSL') ?: '');
+define('DB_SSL', env_setting('DB_SSL', ''));
 
 // Local time for created_at in the JSON fallback and on confirmation pages.
 date_default_timezone_set('Africa/Harare');

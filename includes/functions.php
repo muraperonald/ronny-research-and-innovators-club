@@ -83,7 +83,11 @@ function get_db(): ?PDO
         $pdo = new PDO($dsn, DB_USER, DB_PASS, $options);
         create_tables($pdo);
     } catch (PDOException $ex) {
-        error_log('R-RIC DB unavailable, using JSON fallback: ' . $ex->getMessage());
+        // Log enough to diagnose a bad setting without ever revealing the password.
+        error_log(sprintf(
+            'R-RIC DB unavailable, using JSON fallback: %s [host=%s port=%s db=%s user=%s password_length=%d ssl=%s]',
+            $ex->getMessage(), DB_HOST, DB_PORT, DB_NAME, DB_USER, strlen(DB_PASS), DB_SSL === '' ? 'off' : 'on'
+        ));
         $pdo = null;
     }
 
