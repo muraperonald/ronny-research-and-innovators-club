@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-labelledby="rric-logo-title">
+    <title id="rric-logo-title">R-RIC: Ronny Research &amp; Innovation Club</title>
+    <defs>
+        <linearGradient id="rric-bg" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#1B1F3B"/>
+            <stop offset="1" stop-color="#2D3A8C"/>
+        </linearGradient>
+        <linearGradient id="rric-ring" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#2EC4B6"/>
+            <stop offset="1" stop-color="#FFB703"/>
+        </linearGradient>
+    </defs>
+
+    <!-- Hexagon chip body -->
+    <path d="M128 12 L228 70 V186 L128 244 L28 186 V70 Z" fill="url(#rric-bg)" stroke="url(#rric-ring)" stroke-width="9" stroke-linejoin="round"/>
+
+    <!-- Circuit traces -->
+    <g fill="none" stroke="#2EC4B6" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M54 104 H72"/>
+        <path d="M54 152 H72"/>
+        <path d="M170 100 H186 L200 86"/>
+    </g>
+    <g fill="#2EC4B6">
+        <circle cx="50" cy="104" r="7"/>
+        <circle cx="50" cy="152" r="7"/>
+        <circle cx="204" cy="82" r="7"/>
+    </g>
+
+    <!-- The "R" for Ronny -->
+    <path d="M90 70 V186 M90 70 H136 A30 30 0 0 1 136 130 H90 M124 130 L164 186"
+          fill="none" stroke="#FFFFFF" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <!-- Innovation spark at the end of the leg -->
+    <circle cx="176" cy="196" r="11" fill="#FFB703"/>
+</svg>

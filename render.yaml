@@ -1,0 +1,23 @@
+# Render Blueprint: Render → New → Blueprint → pick this repository.
+# Creates one free Docker web service. Fill in the three secret values
+# (DB_HOST, DB_USER, DB_PASS) from TiDB Cloud when Render asks for them.
+services:
+  - type: web
+    name: ronny-research-club
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /index.html
+    envVars:
+      - key: DB_HOST
+        sync: false
+      - key: DB_USER
+        sync: false
+      - key: DB_PASS
+        sync: false
+      - key: DB_PORT
+        value: "4000"
+      - key: DB_NAME
+        value: test
+      - key: DB_SSL
+        value: "true"
