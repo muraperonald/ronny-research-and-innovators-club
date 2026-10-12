@@ -1,8 +1,7 @@
 # R-RIC: Ronny Research & Innovation Club
 
-ICS 2102 Web Development semester project: a student club website built on the
-TemplateMo *Tiya Golf Club* Bootstrap 5 template, re-branded and split into
-separate pages, with JavaScript validation and a PHP + MySQL backend.
+a student club website built on the
+
 
 ## 1. File structure
 
